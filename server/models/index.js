@@ -13,8 +13,6 @@ const Item = sequelize.define("items", {
   category: Sequelize.STRING,
   image: Sequelize.STRING,
 });
-  another testanother test
-fhuihfi
 
 module.exports = {
   db: sequelize,
