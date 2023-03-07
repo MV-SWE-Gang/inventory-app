@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { SaucesList } from './SaucesList';
 
+
 // import and prepend the api url to any fetch calls
 import apiURL from '../api';
 
 export const App = () => {
 
 	const [sauces, setSauces] = useState([]);
+	const [items, setItems] = useState([]);
+
 
 	async function fetchSauces(){
 		try {
@@ -19,16 +22,30 @@ export const App = () => {
 		}
 	}
 
+	async function fetchItems(){
+		try {
+			const response = await fetch(`${apiURL}/items`);
+			const itemssData = await response.json();
+			
+			setItems(itemsData);
+		} catch (err) {
+			console.log("Oh no an error! ", err)
+		}
+	}
+
+
 	useEffect(() => {
 		fetchSauces();
+		fetchItems()
 	}, []);
 
 	return (
 		<main>	
       <h1>Sauce Store</h1>
 			<h2>All things 🔥</h2>
-			another test
-			<SaucesList sauces={sauces} />
+ 			<SaucesList sauces={sauces} />
+			<ItemsList items={items} />
+
 		</main>
 	)
 }
