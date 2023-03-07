@@ -23,10 +23,27 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
-router.post("/", async (req, res, next) => {
+router.post("/", 
+  [
+    check(["name", "description", "category", "image"])
+      .not()
+      .isEmpty()
+      .withMessage("Please provide a valid value for this field")
+      .trim(),
+    check("price")
+      .isInt({min: 0})
+      .withMessage("Please provide a valid price between 0 and 10000000")
+    ], 
+  async (req, res, next) => {
   try {
+    const errors = validationResult(req);
+    // If the validationResults returns any errors, then trigger a response
+    if(!errors.isEmpty()){
+        res.json({error: errors.array()})
+    } else {
     const items = await Item.create(req.body);
     res.send(items);
+    }
   } catch (error) {
     next(error);
   }
