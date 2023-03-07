@@ -22,6 +22,30 @@ export const App = () => {
 		}
 	}
 
+	async function fetchItems(){
+		try {
+			const response = await fetch(`${apiURL}/items`);
+			const itemsData = await response.json();
+			
+			setItems(itemsData);
+		} catch (err) {
+			console.log("Oh no an error! ", err)
+		}
+	}
+
+
+
+	async function fetchItems(){
+		try {
+			const response = await fetch(`${apiURL}/items`);
+			const itemsData = await response.json();
+			
+			setItems(itemsData);
+		} catch (err) {
+			console.log("Oh no an error! ", err)
+		}
+	}
+
 
 	async function fetchItems(){
 		try {
