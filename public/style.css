@@ -1,23 +1,27 @@
 * {
   margin: 0;
   box-sizing: border-box;
-  /* background-color: rgb(60, 0, 150); */
-  background: radial-gradient(circle, #6802dc, #5404cb);
+  
+  /* background: radial-gradient(circle, #6802dc, #5404cb); */
   padding: 5px;
 }
 
+body{
+  background-color: rgb(181, 173, 194);
+}
+
 h1,h2{
-  color: rgb(22, 167, 153);
+  color: rgb(46, 107, 186);
   text-align: center;
 }
 h1{
   text-decoration: underline;
 }
 h3{
-  color: rgb(183, 154, 22)
+  color: rgb(22, 21, 14)
 }
 p{
-  color: rgb(151, 126, 15);
+  color: rgba(31, 29, 19, 0.951);
 }
 
 img{
