@@ -117,8 +117,8 @@ export const App = () => {
 
 	return (
 		<main>	
-      <h1>Sauce Store</h1>
-			<h2>All things 🔥</h2>
+      <h1>DEMM App</h1>
+			<h2>Keep Track of All DEMM Tings 💯</h2>
 			<ItemList items={items} 
 				fetchOneItem = {fetchOneItem}  
 				fetchAllItems={fetchAllItems} 
