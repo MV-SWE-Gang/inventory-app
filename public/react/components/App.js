@@ -8,8 +8,10 @@ import apiURL from '../api';
 
 export const App = () => {
 
-	const [sauces, setSauces] = useState([]);
 	const [items, setItems] = useState([]);
+	const [viewAllButton, setViewAllButton] =  useState(false)
+
+
 
 	// async function fetchSauces(){
 	// 	try {
@@ -22,53 +24,56 @@ export const App = () => {
 	// 	}
 	// }
 
-	async function fetchItems(){
+
+
+
+	async function fetchAllItems(){
 		try {
 			const response = await fetch(`${apiURL}/items`);
 			const itemsData = await response.json();
 			
 			setItems(itemsData);
+			setViewAllButton(false)
 		} catch (err) {
 			console.log("Oh no an error! ", err)
 		}
 	}
 
-
-
-	async function fetchItems(){
+	async function fetchOneItem(idx){
 		try {
-			const response = await fetch(`${apiURL}/items`);
+			console.log(idx)
+			const response = await fetch(`${apiURL}/items/${idx + 1}`);
 			const itemsData = await response.json();
-			
-			setItems(itemsData);
+			setItems([itemsData]);
+			setViewAllButton(true)
 		} catch (err) {
 			console.log("Oh no an error! ", err)
 		}
 	}
 
-
-	async function fetchItems(){
-		try {
-			const response = await fetch(`${apiURL}/items`);
-			const itemsData = await response.json();
-			
-			setItems(itemsData);
-		} catch (err) {
-			console.log("Oh no an error! ", err)
-		}
-	}
+	// async function deleteOneItem(idx){
+	// 	try {
+	// 		console.log(idx)
+	// 		const response = await fetch(`${apiURL}/items/${idx + 1}`);
+	// 		const itemsData = await response.json();
+	// 		setItems([itemsData]);
+	// 		setViewAllButton(true)
+	// 	} catch (err) {
+	// 		console.log("Oh no an error! ", err)
+	// 	}
+	// }
 
 	useEffect(() => {
 		// fetchSauces();
-		fetchItems()
+		fetchAllItems()
 	}, []);
 
 	return (
 		<main>	
       <h1>Sauce Store</h1>
 			<h2>All things 🔥</h2>
-			{/* <SaucesList sauces={sauces} /> */}
-			<ItemList items={items} />
+			{viewAllButton ? <button onClick={fetchAllItems}>View All</button> : null}
+			<ItemList items={items} fetchOneItem = {fetchOneItem} viewAllButton={viewAllButton} />
 		</main>
 	)
 }
