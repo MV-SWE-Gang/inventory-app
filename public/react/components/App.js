@@ -10,14 +10,8 @@ import apiURL from '../api';
 
 export const App = () => {
 
-<<<<<<< HEAD
 	const [items, setItems] = useState([]);
 	const [viewAllButton, setViewAllButton] =  useState(false)
-=======
-	const [sauces, setSauces] = useState([]);
-	const [items, setItems] = useState([]);
-
->>>>>>> 3b1d4e6d0ffc9d229260311b1bdfe717bfb3cc1b
 
 
 
