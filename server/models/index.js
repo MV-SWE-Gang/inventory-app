@@ -9,6 +9,7 @@ const Item = sequelize.define("items", {
   image: Sequelize.STRING,
 });
 
+
 module.exports = {
   db: sequelize,
   Item
