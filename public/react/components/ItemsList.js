@@ -1,10 +1,9 @@
 import React from 'react';
 import { Item } from './Item';
 
-export const ItemList = ({items, fetchOneItem, fetchAllItems, viewAllButton}) => {
+export const ItemList = ({items, fetchOneItem, fetchAllItems, deleteOneItem, viewAllButton, updateItem}) => {
 
 	
-
 	return <>
 		{
 			items.map((item, idx) => {
@@ -14,6 +13,7 @@ export const ItemList = ({items, fetchOneItem, fetchAllItems, viewAllButton}) =>
 					idx={idx} 
 					fetchOneItem={fetchOneItem} 
 					fetchAllItems={fetchAllItems}
+					deleteOneItem={deleteOneItem}
 					viewAllButton={viewAllButton} 
 				/>
 			})
