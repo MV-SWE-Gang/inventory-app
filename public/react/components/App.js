@@ -181,6 +181,9 @@ export const App = () => {
 				fetchAllItems={fetchAllItems} 
 				deleteOneItem={deleteOneItem}
 				viewAllButton={viewAllButton} />
+      <h1>DEMM App</h1>
+			<h2>Keep Track of All DEMM Tings 💯</h2>
+			<ItemList items={items} fetchOneItem = {fetchOneItem}  fetchAllItems={fetchAllItems} viewAllButton={viewAllButton} />
 		</main>
 	)
 }
