@@ -72,8 +72,7 @@ export const App = () => {
 		<main>	
       <h1>Sauce Store</h1>
 			<h2>All things 🔥</h2>
-			{viewAllButton ? <button onClick={fetchAllItems}>View All</button> : null}
-			<ItemList items={items} fetchOneItem = {fetchOneItem} viewAllButton={viewAllButton} />
+			<ItemList items={items} fetchOneItem = {fetchOneItem}  fetchAllItems={fetchAllItems} viewAllButton={viewAllButton} />
 		</main>
 	)
 }
