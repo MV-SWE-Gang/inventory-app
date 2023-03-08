@@ -8,15 +8,8 @@ import { ItemList } from './ItemsList';
 import apiURL from '../api';
 
 export const App = () => {
-
-<<<<<<< HEAD
 	const [items, setItems] = useState([]);
 	const [viewAllButton, setViewAllButton] =  useState(false)
-=======
-	const [sauces, setSauces] = useState([]);
-	const [items, setItems] = useState([]);
-
->>>>>>> 3b1d4e6d0ffc9d229260311b1bdfe717bfb3cc1b
 
 
 
@@ -118,30 +111,19 @@ export const App = () => {
 
 
 	useEffect(() => {
-<<<<<<< HEAD
 		// fetchSauces();
 		fetchAllItems()
-=======
-		fetchSauces();
-		fetchItems()
->>>>>>> 3b1d4e6d0ffc9d229260311b1bdfe717bfb3cc1b
 	}, []);
 
 	return (
 		<main>	
       <h1>Sauce Store</h1>
 			<h2>All things 🔥</h2>
-<<<<<<< HEAD
 			<ItemList items={items} 
 				fetchOneItem = {fetchOneItem}  
 				fetchAllItems={fetchAllItems} 
 				deleteOneItem={deleteOneItem}
 				viewAllButton={viewAllButton} />
-=======
- 			<SaucesList sauces={sauces} />
-			<ItemsList items={items} />
-
->>>>>>> 3b1d4e6d0ffc9d229260311b1bdfe717bfb3cc1b
 		</main>
 	)
 }
