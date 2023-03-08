@@ -57,3 +57,8 @@ Your team should strive to finish at least the first 4 tiers (a CRUD application
 - As a User, I want to add items to a cart and purchase
 - As a User, I want to use the application on a mobile browser
 - As an Admin, I want all Add and Edit item requests to have server-side validations
+<<<<<<< HEAD
+=======
+
+..
+>>>>>>> cca3927654f1e492ed84110d4121e40250e45388
