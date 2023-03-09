@@ -45,7 +45,7 @@ export const App = () => {
 	async function fetchOneItem(idx){
 		try {
 			console.log(idx)
-			const response = await fetch(`${apiURL}/items/${idx + 1}`);
+			const response = await fetch(`${apiURL}/items/${idx}`);
 			const itemsData = await response.json();
 			setItems([itemsData]);
 			setViewAllButton(true)
@@ -116,15 +116,25 @@ export const App = () => {
 	}, []);
 
 	return (
-		<main>	
-      <h1>DEMM App</h1>
-			<h2>Keep Track of All DEMM Tings 💯</h2>
-			<ItemList items={items} 
+<> 
+	<header className='title'>
+		<h1>DEMM App</h1>
+		<h2>Keep Track of All DEMM Tings 💯</h2>
+	</header>
+
+	<main>	     
+		<ItemList items={items} 
 				fetchOneItem = {fetchOneItem}  
 				fetchAllItems={fetchAllItems} 
 				deleteOneItem={deleteOneItem}
 				handleUpdate={handleUpdate}
 				viewAllButton={viewAllButton} />
-		</main>
+	</main>
+
+
+	<footer>
+	<i className="fa-solid fa-square-plus" id='add'>Add Item</i>
+	</footer>
+</>
 	)
 }

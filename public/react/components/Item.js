@@ -1,6 +1,11 @@
 import React from 'react';
 import { Form } from './Form'
 
+
+
+
+/* single view css link */
+import "./item.css"
 export const Item = ({ item,
   idx,
   fetchOneItem,
@@ -11,14 +16,28 @@ export const Item = ({ item,
 }) => {
 
   return (<div className='item-container'>
-    {viewAllButton ? null : <button onClick={() => { fetchOneItem(idx) }} >View</button>}
-    {viewAllButton ? <button onClick={fetchAllItems}>View All</button> : null}
-    <h3>{item.name}</h3>
-    <img src={item.image} alt={item.name} style={{ maxHeight: "80px", maxWidth: "80px" }} />
-    <p>{item.description}</p>
-    <p>{item.category}</p>
-    <p>{item.price}</p>
-    <button onClick={() => { deleteOneItem(item.id) }}> Delete </button>
-    {/* {<Form />} */}
+    <div className='image-container'>
+      <img src={item.image} alt={item.name} />
+    </div>
+
+
+
+
+    <div className='info-container'>
+      <h3>{item.name}</h3>
+      <p>{item.category}</p>
+      <p>{item.price}</p>
+
+      <section className='icon-container'>
+        {viewAllButton ? null : <i className="fa-solid fa-magnifying-glass" onClick={() => { fetchOneItem(item.id) }}></i>}
+        {viewAllButton ? <div> <p>{item.description}</p><i class="fa-regular fa-square-caret-left" onClick={fetchAllItems}></i> </div>
+          : null}
+        <i className="fa-solid fa-trash" onClick={() => { deleteOneItem(item.id) }}></i>
+      </section>
+
+
+      {/* {<Form />} */}
+    </div>
+
   </div>)
 }
