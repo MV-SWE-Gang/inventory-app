@@ -1,5 +1,7 @@
 ![logo](https://user-images.githubusercontent.com/44912347/202296600-c5f247d6-9616-49db-88f0-38433429d781.jpg)
 
+DEMM App
+
 # Inventory App
 
 You are a team of developers for an e-commerce company. The Engineering team is rebuilding their inventory tracking app from the ground up. Your team has been tasked with creating a Full-Sack (front and back end) RESTful CRUD application to track the items.
@@ -61,8 +63,12 @@ Your team should strive to finish at least the first 4 tiers (a CRUD application
 =======
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ..
 >>>>>>> cca3927654f1e492ed84110d4121e40250e45388
 =======
 Ehsaan xyz
 >>>>>>> 79864a02ebcec7a7b11246db145133b2a0694d45
+=======
+Project by Daniel, Ehsaan, Mustafa, Muhammad
+>>>>>>> 70d5e258052b3e52eb864dbe2338d646c8283e7f

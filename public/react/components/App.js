@@ -1,31 +1,28 @@
 import React, { useState, useEffect } from 'react';
 // import { SaucesList } from './SaucesList';
 import { ItemList } from './ItemsList';
-
-
-
+import { EditForm } from './EditForm';
+import { AddForm } from './AddForm';
 
 // import and prepend the api url to any fetch calls
 import apiURL from '../api';
 
+
 export const App = () => {
+
 
 	const [items, setItems] = useState([]);
 	const [viewAllButton, setViewAllButton] =  useState(false)
-
-
-
-	// async function fetchSauces(){
-	// 	try {
-	// 		const response = await fetch(`${apiURL}/sauces`);
-	// 		const saucesData = await response.json();
-			
-	// 		setSauces(saucesData);
-	// 	} catch (err) {
-	// 		console.log("Oh no an error! ", err)
-	// 	}
-	// }
-
+	const [editButton, setEditButton] = useState(false)
+	const [addButton, setAddButton] = useState(false)
+	const [stateIdElm, setStateIdElm] = useState('')
+	const [formData, setFormData] = useState({
+		name: "",
+		price: 0,
+		description: "",
+		category: "",
+		image: "",
+	        });
 
 
 
@@ -42,13 +39,9 @@ export const App = () => {
 	}
 
 	
-
-	
-
-	async function fetchOneItem(idx){
+	async function fetchOneItem(idElm){
 		try {
-			console.log(idx)
-			const response = await fetch(`${apiURL}/items/${idx + 1}`);
+			const response = await fetch(`${apiURL}/items/${idElm}`);
 			const itemsData = await response.json();
 			setItems([itemsData]);
 			setViewAllButton(true)
@@ -57,14 +50,12 @@ export const App = () => {
 		}
 	}
 
-	async function deleteOneItem(idx){
+	async function deleteOneItem(idElm){
 		try {
-			console.log(idx)
-			await fetch(`${apiURL}/items/${idx}` , {
+			await fetch(`${apiURL}/items/${idElm}` , {
 				method: 'DELETE'
 				}
 			);
-			console.dir(items)
 			fetchAllItems()
 
 		} catch (err) {
@@ -72,115 +63,101 @@ export const App = () => {
 		}
 	}
 
-	// async function addItem(data){
-	async function deleteOneItem(idx){
+	async function updateMenu(data, idElm){
 		try {
-			console.log(idx)
-			await fetch(`${apiURL}/items/${idx}` , {
-				method: 'DELETE'
-				}
-			);
-			console.dir(items)
-			fetchAllItems()
-
-		} catch (err) {
-			console.log("Oh no an error! ", err)
-		}
-	}
-
-	// async function addItem(data){
-	// 	try {
-	// 		await fetch(`${apiURL}/items/` , {
-	// 			method: 'POST',
-	// 			body: JSON.stringify(data),
-	// 			}
-				
-	// 		);
-	// 		fetchAllItems()
-
-	// 		await fetch(`${apiURL}/items/` , {
-	// 			method: 'POST',
-	// 			body: JSON.stringify(data),
-	// 			}
-				
-	// 		);
-	// 		fetchAllItems()
-
-	// 	} catch (err) {
-	// 		console.log("Oh no an error! ", err)
-	// 	}
-	// }
-
-	async function updateItem(idx, data){
-		try {
-			await fetch(`${apiURL}/items/${idx}` , {
+			const response = await fetch(`${apiURL}/items/${idElm}` , {
 				method: 'PUT',
+				mode: 'cors',
+				headers: {
+					"Content-Type": "application/json",
+				        },
 				body: JSON.stringify(data),
 				}
 			);
-			
-			fetchAllItems()
-
+			console.log(response)
+			setEditButton(false)
+			fetchOneItem(idElm)
+			setFormData({
+				name: "",
+				price: 0,
+				description: "",
+				category: "",
+				image: "",
+			        })
 		} catch (err) {
 			console.log("Oh no an error! ", err)
 		}
 	}
 
-	async function fetchItems(){
-		try {
-			const response = await fetch(`${apiURL}/items`);
-			const itemssData = await response.json();
-			
-			setItems(itemsData);
-		} catch (err) {
-			console.log("Oh no an error! ", err)
-		}
-	}
+	const handleUpdate = (idElm) => {
+		setEditButton(true)
+		setStateIdElm(idElm)
+	      }
 
-
-	async function updateItem(idx, data){
+	async function AddItem(data){
 		try {
-			await fetch(`${apiURL}/items/${idx}` , {
-				method: 'PUT',
+			const response = await fetch(`${apiURL}/items/` , {
+				method: 'POST',
+				mode: 'cors',
+				headers: {
+					"Content-Type": "application/json",
+				        },
 				body: JSON.stringify(data),
 				}
 			);
-			
+			console.log(response)
+			setAddButton(false)
 			fetchAllItems()
-
+			setFormData({
+				name: "",
+				price: 0,
+				description: "",
+				category: "",
+				image: "",
+			        })
 		} catch (err) {
 			console.log("Oh no an error! ", err)
 		}
 	}
 
-	async function fetchItems(){
-		try {
-			const response = await fetch(`${apiURL}/items`);
-			const itemssData = await response.json();
-			
-			setItems(itemsData);
-		} catch (err) {
-			console.log("Oh no an error! ", err)
-		}
-	}
+
+	
 
 
 	useEffect(() => {
-
-		// fetchSauces();
 		fetchAllItems()
-
 	}, []);
 
 	return (
 		<main>	
-      <h1>Sauce Store</h1>
-			<h2>All things 🔥</h2>
-			<ItemList items={items} 
-				fetchOneItem = {fetchOneItem}  
-				fetchAllItems={fetchAllItems} 
-				deleteOneItem={deleteOneItem}
-				viewAllButton={viewAllButton} />
+      			<h1>DEMM App</h1>
+			<h2>Keep Track of All DEMM Tings 💯</h2>
+			{viewAllButton ? null : <button onClick={() => {setAddButton(true)}}>Add</button>}
+			{addButton ? (
+				<AddForm 
+				AddItem={AddItem}
+				formData={formData}
+				setFormData={setFormData}
+				/> 
+			) : editButton ? (
+				<EditForm 
+					items={items}
+					stateIdElm={stateIdElm}
+					updateMenu={updateMenu}
+					formData={formData}
+					setFormData={setFormData}
+				/>
+			) : (
+
+				<ItemList 
+					items={items} 
+					fetchOneItem = {fetchOneItem}  
+					fetchAllItems={fetchAllItems} 
+					deleteOneItem={deleteOneItem}
+					handleUpdate={handleUpdate}
+					viewAllButton={viewAllButton} 
+				/>
+			)}
 		</main>
 	)
 }

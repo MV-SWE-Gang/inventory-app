@@ -32,13 +32,14 @@ router.post("/",
       .trim(),
     check("price")
       .isInt({min: 0})
-      .withMessage("Please provide a valid price between 0 and 10000000")
+      .withMessage("Please provide a valid price")
     ], 
   async (req, res, next) => {
   try {
     const errors = validationResult(req);
     // If the validationResults returns any errors, then trigger a response
     if(!errors.isEmpty()){
+      res.status = 404
         res.json({error: errors.array()})
     } else {
     const items = await Item.create(req.body);
@@ -60,8 +61,10 @@ router.delete("/:id", async (req, res, next) => {
 
 router.put("/:id", async (req, res, next) => {
   try {
-    const items = await Item.update(req.body, {where: {id: req.params.id}});
-    res.send(items);
+    await Item.update(req.body, {where: {id: req.params.id}});
+    console.log('putty reqqy', req.params.id, req.body.name)
+    const msg = 'Updated'
+    res.json(msg);
   } catch (error) {
     next(error);
   }

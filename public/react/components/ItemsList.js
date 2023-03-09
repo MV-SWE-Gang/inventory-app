@@ -1,26 +1,31 @@
-import React from 'react';
-import { Item } from './Item';
+import React from "react";
+import { Item } from "./Item";
 
-
-export const ItemList = ({items, fetchOneItem, fetchAllItems, deleteOneItem, viewAllButton, updateItem}) => {
-
-	
-
-	return <>
-		{
-			items.map((item, idx) => {
-				return <Item 
-					item={item} 
-					key={idx} 
-					idx={idx} 
-					fetchOneItem={fetchOneItem} 
-					fetchAllItems={fetchAllItems}
-					deleteOneItem={deleteOneItem}
-					viewAllButton={viewAllButton} 
-				/>
-
-
-			})
-		}
-	</>
-} 
+export const ItemList = ({
+  items,
+  fetchOneItem,
+  fetchAllItems,
+  deleteOneItem,
+  viewAllButton,
+  handleUpdate,
+  updateItem,
+}) => {
+  return (
+    <>
+      {items.map((item, idElm) => {
+        return (
+          <Item
+            item={item}
+            key={idElm}
+            idElm={idElm}
+            fetchOneItem={fetchOneItem}
+            fetchAllItems={fetchAllItems}
+            deleteOneItem={deleteOneItem}
+            handleUpdate={handleUpdate}
+            viewAllButton={viewAllButton}
+          />
+        );
+      })}
+    </>
+  );
+};
