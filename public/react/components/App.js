@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 // import { SaucesList } from './SaucesList';
 import { ItemList } from './ItemsList';
-import { Form } from './Form';
 
 
 
@@ -9,6 +8,8 @@ import { Form } from './Form';
 import apiURL from '../api';
 
 export const App = () => {
+
+
 	const [items, setItems] = useState([]);
 	const [viewAllButton, setViewAllButton] =  useState(false)
 
@@ -41,7 +42,6 @@ export const App = () => {
 	}
 
 	
-
 	async function fetchOneItem(idx){
 		try {
 			console.log(idx)
@@ -69,16 +69,16 @@ export const App = () => {
 		}
 	}
 
-	async function fetchItems(){
-		try {
-			const response = await fetch(`${apiURL}/items`);
-			const itemssData = await response.json();
-			
-			setItems(itemsData);
-		} catch (err) {
-			console.log("Oh no an error! ", err)
-		}
-	}
+	
+	// async function addItem(data){
+	// 	try {
+	// 		await fetch(`${apiURL}/items/` , {
+	// 			method: 'POST',
+	// 			body: JSON.stringify(data),
+	// 			}
+				
+	// 		);
+	// 		fetchAllItems()
 
 	async function updateItem(data, idx){
 		try {
@@ -107,6 +107,9 @@ export const App = () => {
 	      }
 
 
+	
+
+
 	useEffect(() => {
 		// fetchSauces();
 		fetchAllItems()
@@ -114,8 +117,8 @@ export const App = () => {
 
 	return (
 		<main>	
-      <h1>Sauce Store</h1>
-			<h2>All things 🔥</h2>
+      <h1>DEMM App</h1>
+			<h2>Keep Track of All DEMM Tings 💯</h2>
 			<ItemList items={items} 
 				fetchOneItem = {fetchOneItem}  
 				fetchAllItems={fetchAllItems} 
