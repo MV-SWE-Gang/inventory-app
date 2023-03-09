@@ -111,7 +111,6 @@ export const App = () => {
 
 
 	useEffect(() => {
-<<<<<<< HEAD
 		// fetchSauces();
 		fetchAllItems()
 	}, []);
