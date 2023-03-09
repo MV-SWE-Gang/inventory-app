@@ -1,11 +1,12 @@
 import React from 'react';
+import { Form } from './Form'
 
 export const Item = ({ item,
   idx,
   fetchOneItem,
   fetchAllItems,
   deleteOneItem,
-  updateItem,
+  handleUpdate,
   viewAllButton,
 }) => {
 
@@ -18,6 +19,6 @@ export const Item = ({ item,
     <p>{item.category}</p>
     <p>{item.price}</p>
     <button onClick={() => { deleteOneItem(item.id) }}> Delete </button>
-    <button onClick={() =>{updateItem(item.id)}}>Update</button>
+    {/* {<Form />} */}
   </div>)
 }

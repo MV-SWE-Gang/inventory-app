@@ -4,11 +4,11 @@ import { ItemList } from './ItemsList';
 
 
 
-
 // import and prepend the api url to any fetch calls
 import apiURL from '../api';
 
 export const App = () => {
+
 
 	const [items, setItems] = useState([]);
 	const [viewAllButton, setViewAllButton] =  useState(false)
@@ -42,9 +42,6 @@ export const App = () => {
 	}
 
 	
-
-	
-
 	async function fetchOneItem(idx){
 		try {
 			console.log(idx)
@@ -72,22 +69,7 @@ export const App = () => {
 		}
 	}
 
-	// async function addItem(data){
-	async function deleteOneItem(idx){
-		try {
-			console.log(idx)
-			await fetch(`${apiURL}/items/${idx}` , {
-				method: 'DELETE'
-				}
-			);
-			console.dir(items)
-			fetchAllItems()
-
-		} catch (err) {
-			console.log("Oh no an error! ", err)
-		}
-	}
-
+	
 	// async function addItem(data){
 	// 	try {
 	// 		await fetch(`${apiURL}/items/` , {
@@ -98,20 +80,7 @@ export const App = () => {
 	// 		);
 	// 		fetchAllItems()
 
-	// 		await fetch(`${apiURL}/items/` , {
-	// 			method: 'POST',
-	// 			body: JSON.stringify(data),
-	// 			}
-				
-	// 		);
-	// 		fetchAllItems()
-
-	// 	} catch (err) {
-	// 		console.log("Oh no an error! ", err)
-	// 	}
-	// }
-
-	async function updateItem(idx, data){
+	async function updateItem(data, idx){
 		try {
 			await fetch(`${apiURL}/items/${idx}` , {
 				method: 'PUT',
@@ -126,50 +95,25 @@ export const App = () => {
 		}
 	}
 
-	async function fetchItems(){
-		try {
-			const response = await fetch(`${apiURL}/items`);
-			const itemssData = await response.json();
-			
-			setItems(itemsData);
-		} catch (err) {
-			console.log("Oh no an error! ", err)
-		}
-	}
+	const handleUpdate = (e, idx) => {
+		e.preventDefault()
+		updateItem(e.target.value, idx)
+
+		setName('')
+		setPrice(0)
+		setDescription('')
+		setCategory('')
+		setImage('')
+	      }
 
 
-	async function updateItem(idx, data){
-		try {
-			await fetch(`${apiURL}/items/${idx}` , {
-				method: 'PUT',
-				body: JSON.stringify(data),
-				}
-			);
-			
-			fetchAllItems()
-
-		} catch (err) {
-			console.log("Oh no an error! ", err)
-		}
-	}
-
-	async function fetchItems(){
-		try {
-			const response = await fetch(`${apiURL}/items`);
-			const itemssData = await response.json();
-			
-			setItems(itemsData);
-		} catch (err) {
-			console.log("Oh no an error! ", err)
-		}
-	}
+	
 
 
 	useEffect(() => {
-
+<<<<<<< HEAD
 		// fetchSauces();
 		fetchAllItems()
-
 	}, []);
 
 	return (
@@ -180,6 +124,7 @@ export const App = () => {
 				fetchOneItem = {fetchOneItem}  
 				fetchAllItems={fetchAllItems} 
 				deleteOneItem={deleteOneItem}
+				handleUpdate={handleUpdate}
 				viewAllButton={viewAllButton} />
 		</main>
 	)
