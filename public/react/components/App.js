@@ -41,8 +41,6 @@ export const App = () => {
 	
 	async function fetchOneItem(idElm){
 		try {
-			console.log(idx)
-			const response = await fetch(`${apiURL}/items/${idx}`);
 			const response = await fetch(`${apiURL}/items/${idElm}`);
 			const itemsData = await response.json();
 			setItems([itemsData]);
