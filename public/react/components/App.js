@@ -132,7 +132,9 @@ export const App = () => {
 		<>	
 		<h1>DEMM App</h1>
 		<h2>Keep Track of All DEMM Tings 💯</h2>
-		<main>	
+		<div>
+
+		
 			{addButton ? (
 				<AddForm 
 				AddItem={AddItem}
@@ -148,7 +150,7 @@ export const App = () => {
 					setFormData={setFormData}
 				/>
 			) : (
-				
+				<main>	
 				<ItemList 
 					items={items} 
 					fetchOneItem = {fetchOneItem}  
@@ -157,8 +159,10 @@ export const App = () => {
 					handleUpdate={handleUpdate}
 					viewAllButton={viewAllButton} 
 				/>
+				</main>
 			)}
-		</main>
+		
+		</div>
 		<footer>
 			{!addButton && !editButton ? <i class="fa-solid fa-circle-plus" id='add' onClick={() => {setAddButton(true)}}> Add </i> : <i class="fa-solid fa-circle-plus" onClick={() => {setEditButton(false); setAddButton(false)}}> Back </i>}
 		</footer>
