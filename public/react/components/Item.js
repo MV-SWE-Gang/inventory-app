@@ -11,7 +11,7 @@ export const Item = ({
   viewAllButton,
 }) => {
 
-  return (<div className='item-container'>
+  return (<div className='item-container' style={viewAllButton ? {minWidth: '100%'} : null}>
     <div className='image-container'>
       <img src={item.image} alt={item.name} />
     </div>
@@ -19,16 +19,18 @@ export const Item = ({
 
 
 
-    <div className='info-container'>
+    <div className='info-container' >
       <h3>{item.name}</h3>
-      <p>{item.category}</p>
-      <p>{item.price}</p>
+      <h7>Category: {item.category}</h7>
+      <p>{`£${item.price}`}</p>
 
       <section className='icon-container'>
         {viewAllButton ? null : <i className="fa-solid fa-magnifying-glass" onClick={() => { fetchOneItem(item.id) }}></i>}
-        {viewAllButton ? <div> <p>{item.description}</p><i class="fa-regular fa-square-caret-left" onClick={fetchAllItems}></i> </div>
+        {viewAllButton ? <div> <p>{item.description}</p></div>
           : null}
-        <i className="fa-solid fa-trash" onClick={() => { deleteOneItem(item.id) }}></i>
+        {viewAllButton ? <i class="fa-regular fa-square-caret-left" onClick={fetchAllItems}></i> : null}
+        {viewAllButton ? <i className="fa-solid fa-pencil"  onClick={() => { handleUpdate(item.id) }}></i> : null}
+        {viewAllButton ? <i className="fa-solid fa-trash" onClick={() => { deleteOneItem(item.id) }}></i> : null}
       </section>
 
 

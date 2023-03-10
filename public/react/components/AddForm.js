@@ -10,13 +10,15 @@ export const AddForm = ({AddItem, formData, setFormData}) => {
           AddItem(formData);
         }}>
           
-          <input type="text"  onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
-          <input type="number"  onChange={(e) => setFormData({ ...formData, price: e.target.value })} />
-          <textarea  onChange={(e) => setFormData({ ...formData, description: e.target.value })}></textarea>
-          <input type="text" onChange={(e) => setFormData({ ...formData, category: e.target.value })} />
-          <input type="text"  onChange={(e) => setFormData({ ...formData, image: e.target.value })} />
+          <input type="text" placeholder="Item name" onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
+          <input type="number" placeholder="Price of item" onChange={(e) => setFormData({ ...formData, price: e.target.value })} />
+          <textarea placeholder="Description of item" onChange={(e) => setFormData({ ...formData, description: e.target.value })}></textarea>
+          <input type="text" placeholder="Category" onChange={(e) => setFormData({ ...formData, category: e.target.value })} />
+          <input type="text" placeholder="Image link" onChange={(e) => setFormData({ ...formData, image: e.target.value })} />
           
-          <button type = "submit">Add</button> 
+          <button type = "submit" id="invisible">
+            <i class="fa-solid fa-circle-plus" id='add-button'> Add </i>
+          </button> 
         </form>
     );
 }

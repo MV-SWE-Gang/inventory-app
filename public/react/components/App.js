@@ -129,10 +129,10 @@ export const App = () => {
 	}, []);
 
 	return (
+		<>	
+		<h1>DEMM App</h1>
+		<h2>Keep Track of All DEMM Tings 💯</h2>
 		<main>	
-      			<h1>DEMM App</h1>
-			<h2>Keep Track of All DEMM Tings 💯</h2>
-			{viewAllButton ? null : <button onClick={() => {setAddButton(true)}}>Add</button>}
 			{addButton ? (
 				<AddForm 
 				AddItem={AddItem}
@@ -148,7 +148,7 @@ export const App = () => {
 					setFormData={setFormData}
 				/>
 			) : (
-
+				
 				<ItemList 
 					items={items} 
 					fetchOneItem = {fetchOneItem}  
@@ -159,5 +159,9 @@ export const App = () => {
 				/>
 			)}
 		</main>
+		<footer>
+			{!addButton && !editButton ? <i class="fa-solid fa-circle-plus" id='add' onClick={() => {setAddButton(true)}}> Add </i> : <i class="fa-solid fa-circle-plus" onClick={() => {setEditButton(false); setAddButton(false)}}> Back </i>}
+		</footer>
+		</>
 	)
 }
