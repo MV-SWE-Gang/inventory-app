@@ -27,7 +27,7 @@ export const EditForm = ({items, stateIdElm, updateMenu, formData, setFormData})
         }}>
           
           <input type="text" value={name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
-          <input type="number" value={price} onChange={(e) => setFormData({ ...formData, price: e.target.value })} />
+          <input type="number" step="0.01" value={price} onChange={(e) => setFormData({ ...formData, price: e.target.value })} />
           <textarea value={description} onChange={(e) => setFormData({ ...formData, description: e.target.value })}></textarea>
           <input type="text" value={category} onChange={(e) => setFormData({ ...formData, category: e.target.value })} />
           <input type="text" value={image} onChange={(e) => setFormData({ ...formData, image: e.target.value })} />

@@ -31,7 +31,7 @@ router.post("/",
       .withMessage("Please provide a valid value for this field")
       .trim(),
     check("price")
-      .isInt({min: 0})
+      .matches(/^\d+(\.\d{2})$/)
       .withMessage("Please provide a valid price")
     ], 
   async (req, res, next) => {
